@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BuilderController">
+   <children>
+      <StackPane prefHeight="217.0" prefWidth="300.0">
+         <children>
+            <TextField fx:id="textField" alignment="CENTER" prefHeight="150.0" prefWidth="260.0" StackPane.alignment="CENTER">
+               <StackPane.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </StackPane.margin>
+            </TextField>
+         </children>
+      </StackPane>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <Button fx:id="oneNumber" mnemonicParsing="false" onAction="#num1" prefHeight="50.0" prefWidth="50.0" text="1" />
+            <Button fx:id="twoNumber" mnemonicParsing="false" onAction="#num2" prefHeight="50.0" prefWidth="50.0" text="2" />
+            <Button fx:id="threeNumber" mnemonicParsing="false" onAction="#num3" prefHeight="50.0" prefWidth="50.0" text="3" />
+            <Button fx:id="plusButton" mnemonicParsing="false" onAction="#plusOperation" prefHeight="50.0" prefWidth="50.0" text="+" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <Button fx:id="fourNumber" mnemonicParsing="false" onAction="#num4" prefHeight="50.0" prefWidth="50.0" text="4">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="fiveNumber" mnemonicParsing="false" onAction="#num5" prefHeight="50.0" prefWidth="50.0" text="5" />
+            <Button fx:id="sixNumber" mnemonicParsing="false" onAction="#num6" prefHeight="50.0" prefWidth="50.0" text="6" />
+            <Button fx:id="minButton" mnemonicParsing="false" onAction="#minusOperation" prefHeight="50.0" prefWidth="50.0" text="-" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <Button fx:id="sevenNumber" mnemonicParsing="false" onAction="#num7" prefHeight="50.0" prefWidth="50.0" text="7" />
+            <Button fx:id="eightNumber" mnemonicParsing="false" onAction="#num8" prefHeight="50.0" prefWidth="50.0" text="8" />
+            <Button fx:id="nineNumber" mnemonicParsing="false" onAction="#num9" prefHeight="50.0" prefWidth="50.0" text="9" />
+            <Button fx:id="multiButton" mnemonicParsing="false" onAction="#multiOperation" prefHeight="50.0" prefWidth="50.0" text="X" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <Button fx:id="resullButton" mnemonicParsing="false" onAction="#resulltOperation" prefHeight="50.0" prefWidth="50.0" text="=" />
+            <Button fx:id="cleanButton" mnemonicParsing="false" onAction="#cleanOperation" prefHeight="50.0" prefWidth="50.0" text="C" />
+            <Button fx:id="zeroNumber" mnemonicParsing="false" onAction="#num10" prefHeight="50.0" prefWidth="50.0" text="0" />
+            <Button fx:id="splitButton" mnemonicParsing="false" onAction="#splitOperation" prefHeight="50.0" prefWidth="50.0" text="/" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+   </children>
+</VBox>
