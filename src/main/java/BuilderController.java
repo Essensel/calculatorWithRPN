@@ -1,81 +1,109 @@
-import javafx.fxml.FXML;
+
+
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-
-import java.awt.*;
 
 
 public class BuilderController {
     private CulcModel culcModel = new CulcModel();
-    private Double numberOne;
-    private Double numberTwo;
-    private String numOneSt = "";
-    private String numTwoSt = "";
-    String operationSymbol = "";
-    String curentResult = "";
+    private String operationSymbol = "";
+    private String curentResult = "";
+    private boolean haveResult = false;
 
     @FXML
     private TextField textField;
-    @FXML
-    private TextField curentTextField;
 
-    @FXML
-    void number(ActionEvent event) {
-
+    protected String getButtonText(ActionEvent event) {
         String resultText = textField.getText();
         int index = event.getSource().toString().length();
         String text = Character.toString(event.getSource().toString().charAt(index - 2));
+        return text;
+    }
 
-        if ((!resultText.contains("+")) & (!resultText.contains("-")) & (!resultText.contains("/")) & (!resultText.contains("X"))) {
-            textField.setText(resultText + text);
+    @FXML
+    void number(ActionEvent event) {
+        String resultText = textField.getText();
+        String text = getButtonText(event);
+        if (!haveResult) {
+            if (resultText.equals("")) {
+                textField.setText(text);
+            } else {
+                textField.setText(resultText + text);
+            }
+            haveResult = false;
         } else {
             textField.setText(text);
-        }
-        if (!numOneSt.equals("") && !operationSymbol.equals("")) {
-            Double result;
-            numTwoSt = textField.getText();
-            numberOne = Double.parseDouble(numOneSt);
-            numberTwo = Double.parseDouble(numTwoSt);
-            result = culcModel.mathOperation(numberOne, numberTwo, operationSymbol);
-            curentResult = result.toString();
-            curentTextField.setText(curentResult);
+            haveResult = false;
         }
     }
 
     @FXML
     void operation(ActionEvent event) {
-
+        haveResult = false;
         String resultText = textField.getText();
-        if(curentResult.equals("")){
-        if (numOneSt.equals("")) {
-            numOneSt = resultText;
-        } else {
-            numTwoSt = resultText;
-        }} else {
-            numOneSt = curentResult;
-        }
 
-        if ((!resultText.equals("")) & (!resultText.contains("-")) & (!resultText.contains("+")) & (!resultText.contains("/")) & (!resultText.contains("X"))) {
-            int index = event.getSource().toString().length();
-            String text = Character.toString(event.getSource().toString().charAt(index - 2));
-            textField.setText(text);
-            operationSymbol = text;
-            curentTextField.setText(numOneSt + " " + operationSymbol);
+        String text = getButtonText(event);
+        if (!resultText.equals("")) {
+            char lastElement = resultText.charAt(resultText.length() - 1);
+            String lastStringElement = Character.toString(lastElement);
+            if (!lastStringElement.equals("+") && !lastStringElement.equals("*") && !lastStringElement.equals("/") && !lastStringElement.equals("-")) {
+                textField.setText(resultText + text);
+            } else if ((lastStringElement.equals("/") || lastStringElement.equals("*")) && resultText.length() > 2) {
+                if (text.equals("-")) {
+                    textField.setText(resultText + text);
+                }
+            }
+        } else {
+            if (text.equals("-")) {
+                textField.setText(resultText + text);
+            }
         }
     }
 
     @FXML
     void cleanOperation(ActionEvent event) {
         textField.setText("");
-        curentTextField.setText("");
-        numberOne=0.0;
-        numberTwo=0.0;
-         numOneSt = "";
-         numTwoSt = "";
-       operationSymbol = "";
-       curentResult = "";
+        operationSymbol = "";
+        curentResult = "";
+    }
+
+    @FXML
+    void result(ActionEvent event) {
+        String resultText = textField.getText();
+        if (!resultText.equals("")) {
+            char lastElement = resultText.charAt(resultText.length() - 1);
+            String lastStringElement = Character.toString(lastElement);
+            if (!lastStringElement.equals("+") && !lastStringElement.equals("*") && !lastStringElement.equals("/") && !lastStringElement.equals("-") && !lastStringElement.equals(".")) {
+                String result = culcModel.getResult(textField.getText());
+                textField.setText(result);
+                haveResult = true;
+            }
+        }
+    }
+
+    @FXML
+    void cleanOneSymbol(ActionEvent event) {
+        String resultText = textField.getText();
+        if (!resultText.equals("")) {
+            textField.setText(resultText.substring(0, resultText.length() - 1));
+        }
+
+    }
+
+    @FXML
+    void addFraction(ActionEvent event) {
+        String resultText = textField.getText();
+        if (!resultText.equals("")) {
+            char lastElement = resultText.charAt(resultText.length() - 1);
+            String lastStringElement = Character.toString(lastElement);
+            if (!lastStringElement.equals("+") && !lastStringElement.equals("*") && !lastStringElement.equals("/") && !lastStringElement.equals("-") && !lastStringElement.equals(".")) {
+
+                String text = getButtonText(event);
+                textField.setText(resultText + text);
+            }
+        }
     }
 }
 
