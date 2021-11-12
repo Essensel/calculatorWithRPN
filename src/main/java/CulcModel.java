@@ -1,13 +1,24 @@
 import org.mariuszgromada.math.mxparser.Expression;
 
 public class CulcModel {
-protected String getResult (String textFromTextField){
-
-    Expression e = new Expression();
-    e.setExpressionString(textFromTextField);
-    Double currentResult = e.calculate();
-    String result = currentResult.toString();
-    return  result;
+    protected double getResult(double first, double second, String operation) {
+        double result =  0;
+        switch (operation) {
+            case ("+"):
+                result = first + second;
+                break;
+            case ("-"):
+                result = first - second;
+                break;
+            case ("*"):
+                result = first * second;
+                break;
+            case ("/"):
+                result = first / second;
+                break;
+        }
+        return result;
+    }
 }
 
-}
+

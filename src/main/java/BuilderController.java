@@ -76,7 +76,11 @@ public class BuilderController {
             char lastElement = resultText.charAt(resultText.length() - 1);
             String lastStringElement = Character.toString(lastElement);
             if (!lastStringElement.equals("+") && !lastStringElement.equals("*") && !lastStringElement.equals("/") && !lastStringElement.equals("-") && !lastStringElement.equals(".")) {
-                String result = culcModel.getResult(textField.getText());
+
+                StringConverter stringConverter = new StringConverter();
+                String result = Double.toString(stringConverter.getResult(stringConverter,resultText));
+            //    String result = culcModel.getResult(textField.getText());
+
                 textField.setText(result);
                 haveResult = true;
             }
