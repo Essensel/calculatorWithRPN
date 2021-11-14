@@ -1,8 +1,7 @@
-import org.mariuszgromada.math.mxparser.Expression;
 
 public class CulcModel {
     protected double getResult(double first, double second, String operation) {
-        double result =  0;
+        double result = 0;
         switch (operation) {
             case ("+"):
                 result = first + second;

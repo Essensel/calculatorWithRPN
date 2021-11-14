@@ -7,16 +7,12 @@ import javafx.scene.control.TextField;
 
 
 public class BuilderController {
-    private CulcModel culcModel = new CulcModel();
-    private String operationSymbol = "";
-    private String curentResult = "";
     private boolean haveResult = false;
 
     @FXML
     private TextField textField;
 
     protected String getButtonText(ActionEvent event) {
-        String resultText = textField.getText();
         int index = event.getSource().toString().length();
         String text = Character.toString(event.getSource().toString().charAt(index - 2));
         return text;
@@ -24,6 +20,7 @@ public class BuilderController {
 
     @FXML
     void number(ActionEvent event) {
+
         String resultText = textField.getText();
         String text = getButtonText(event);
         if (!haveResult) {
@@ -42,22 +39,30 @@ public class BuilderController {
     @FXML
     void operation(ActionEvent event) {
         haveResult = false;
-        String resultText = textField.getText();
 
+        String resultText = textField.getText();
         String text = getButtonText(event);
+
+
         if (!resultText.equals("")) {
             char lastElement = resultText.charAt(resultText.length() - 1);
             String lastStringElement = Character.toString(lastElement);
+
             if (!lastStringElement.equals("+") && !lastStringElement.equals("*") && !lastStringElement.equals("/") && !lastStringElement.equals("-")) {
                 textField.setText(resultText + text);
-            } else if ((lastStringElement.equals("/") || lastStringElement.equals("*")) && resultText.length() > 2) {
+            } else if (text.equals("(")) {
+                textField.setText(resultText + text);
+            } else if ((lastStringElement.equals("/") || lastStringElement.equals("*")) && resultText.length() >= 2) {
                 if (text.equals("-")) {
-                    textField.setText(resultText + text);
+                    textField.setText(resultText + "(" + text);
                 }
             }
         } else {
             if (text.equals("-")) {
                 textField.setText(resultText + text);
+            }
+            if (text.equals("(")) {
+                textField.setText(text);
             }
         }
     }
@@ -65,8 +70,7 @@ public class BuilderController {
     @FXML
     void cleanOperation(ActionEvent event) {
         textField.setText("");
-        operationSymbol = "";
-        curentResult = "";
+
     }
 
     @FXML
@@ -78,11 +82,14 @@ public class BuilderController {
             if (!lastStringElement.equals("+") && !lastStringElement.equals("*") && !lastStringElement.equals("/") && !lastStringElement.equals("-") && !lastStringElement.equals(".")) {
 
                 StringConverter stringConverter = new StringConverter();
-                String result = Double.toString(stringConverter.getResult(stringConverter,resultText));
-            //    String result = culcModel.getResult(textField.getText());
+                try {
+                    String result = Double.toString(stringConverter.getResult(stringConverter, resultText));
 
-                textField.setText(result);
-                haveResult = true;
+                    textField.setText(result);
+                    haveResult = true;
+                } catch (Exception e) {
+                    textField.setText(resultText);
+                }
             }
         }
     }
@@ -109,6 +116,7 @@ public class BuilderController {
             }
         }
     }
+
 }
 
 

@@ -10,6 +10,7 @@ public class StringConverter {
     /**
      * метод добавляет знак "0" в выражени между операциями
      * для осуществления вычислений с отрицательными значениями
+     *
      * @param expretion изначальное выражение
      * @return corectExpr
      */
@@ -20,8 +21,7 @@ public class StringConverter {
             if (curentChar == '-') {
                 if (i == 0) {
                     corectExpr += "0";
-                }
-                else if ((expretion.charAt(i - 1) == '(')) {
+                } else if ((expretion.charAt(i - 1) == '(')) {
                     corectExpr += "0";
                 }
             }
@@ -156,13 +156,15 @@ public class StringConverter {
                     resultStack.push(Double.toString(result));
                 } catch (Exception e) {
                     System.out.println("что то пошло не так!");
+
                 }
             }
         }
         return result;
     }
-    protected double getResult(StringConverter stringConverter, String expretion){
-        double result =  stringConverter.getResultFromRPN(stringConverter.getRevPoNot(stringConverter.getTokensArray(stringConverter.getCorrectExpretion(expretion))));
+
+    protected double getResult(StringConverter stringConverter, String expretion) {
+        double result = stringConverter.getResultFromRPN(stringConverter.getRevPoNot(stringConverter.getTokensArray(stringConverter.getCorrectExpretion(expretion))));
         return result;
     }
 }

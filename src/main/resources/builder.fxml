@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
@@ -21,6 +22,9 @@
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
             </TextField>
          </children>
       </StackPane>
@@ -65,8 +69,8 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="(" />
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text=")" />
+            <Button mnemonicParsing="false" onAction="#operation" prefHeight="50.0" prefWidth="50.0" text="(" />
+            <Button mnemonicParsing="false" onAction="#operation" prefHeight="50.0" prefWidth="50.0" text=")" />
             <Button mnemonicParsing="false" onAction="#cleanOperation" prefHeight="50.0" prefWidth="50.0" text="C" />
             <Button mnemonicParsing="false" onAction="#result" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: deepskyblue;" text="=" />
          </children>
